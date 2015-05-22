@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/fit.bmp</file>
+        <file>icons/locked.bmp</file>
+        <file>icons/unlocked.bmp</file>
+    </qresource>
+</RCC>
