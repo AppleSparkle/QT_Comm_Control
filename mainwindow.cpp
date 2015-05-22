@@ -536,3 +536,39 @@ void MainWindow::on_plc_Runstop_Button_clicked()
         _plc->plc_stop();
     }
 }
+
+void MainWindow::on_save_as_gbr_button_clicked()
+{
+    QString tt_filename = QFileDialog::getSaveFileName(
+                this,
+                tr("Save"),
+                "D:/!123",
+                tr("Gerber (*.gbr)")
+                );
+    QFile tt_file(tt_filename);
+    tt_file.remove();
+
+    if ( tt_file.open(QIODevice::ReadWrite) )
+    {
+        QTextStream stream( &tt_file );
+        QDateTime datetime;
+
+        stream << "% Auto generated repair file" << "*" << endl;
+        stream << "% Created: " << datetime.currentDateTime().toString("dd.MM HH:mm:ss") << "*" << endl;
+        stream << "% Source file: " << filename << "*" << endl;
+
+        for (int i = 0; i < _repair_data->x_val_array.count(); i++)
+        {
+            stream << "X" << _repair_data->x_val_array.at(i);
+            stream << "Y" << _repair_data->y_val_array.at(i);
+            stream << "D" << _repair_data->d_val_array.at(i);
+            stream << "*" <<endl;
+        }
+
+        stream << "M02*" << endl;
+
+
+
+    }
+    tt_file.close();
+}

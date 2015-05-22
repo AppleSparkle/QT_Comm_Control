@@ -101,6 +101,8 @@ private slots:
 
     void on_plc_Runstop_Button_clicked();
 
+    void on_save_as_gbr_button_clicked();
+
 private:
     Ui::MainWindow *ui;
 
